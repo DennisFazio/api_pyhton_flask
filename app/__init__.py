@@ -1,10 +1,17 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine
+from flask_script import Manager
+from flask_migrate import Migrate, MigrateCommand
+
 
 app = Flask(__name__)
-## engine = sa.create_engine('mssql+pyodbc://DESKTOP-FQPDNGK\SQLEXPRESS/database')
-## engine = app.create_engine('mssql+pyodbc://user:password@server/database')
-app.config['SQLALCHEMY_DATABAE_URI'] = 'sqlite:///storage.db'
-db = SQLAlchemy(app)
+app.config.from_object('config')
 
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+
+
+manager = Manager(app)
+manager.add_command('db', MigrateCommand)
 from app.controllers import default

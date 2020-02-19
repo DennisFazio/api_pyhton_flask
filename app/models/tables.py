@@ -3,7 +3,7 @@ from app import db
 class User(db.Model):
     __tablename__= "users"
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.uniqueidentifier, primary_key=True)
     username = db.Column(db.String, unique=True)
     password = db.Column(db.String)
     name = db.Column(db.String)
@@ -21,9 +21,9 @@ class User(db.Model):
     class Post(db.Model):
         __tablename__= "posts"
 
-        id = db.Column(db.Integer, primary_key=True)
+        id = db.Column(db.uniqueidentifier, primary_key=True)
         content = db.Column(db.Text)
-        user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+        user_id = db.Column(db.uniqueidentifier, db.ForeignKey('users.id'))
 
         user = db.relationship('User', foreign_keys=user_id)
 
