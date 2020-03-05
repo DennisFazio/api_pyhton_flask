@@ -1,15 +1,21 @@
 from flask import render_template
 from app import app
 
-@app.route("/")
+@app.route("/signin")
 def index():
-    return render_template('login.html')
+    return render_template('/signin/signin.html')
 
-@app.route("/index/<user>")
-def main(user):
-    return render_template('main.html',
-                           user=user)
+@app.route("/main")
+def main():
+    return render_template('main.html')
 
+@app.route("/base")
+def base():
+    return render_template('base.html')
+
+@app.route("/original")
+def original():
+    return render_template('original.html')
 
 
 
