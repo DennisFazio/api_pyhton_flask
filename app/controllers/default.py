@@ -1,6 +1,7 @@
 from flask import render_template
 from app import app
 
+@app.route("/")
 @app.route("/signin")
 def index():
     return render_template('/signin/signin.html')
