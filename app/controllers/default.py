@@ -1,12 +1,27 @@
 from flask import render_template
 from app import app
 
-@app.route("/index/<user>")
-@app.route("/", defaults={'user': None})
-def index(user):
-    return render_template('index.html',
-                           user=user)
+@app.route("/")
+@app.route("/signin")
+def index():
+    return render_template('/signin/signin.html')
 
+@app.route("/main")
+def main():
+    return render_template('main.html')
+
+@app.route("/base")
+def base():
+    return render_template('base.html')
+
+@app.route("/original")
+def original():
+    return render_template('original.html')
+
+
+
+
+############# EXEMPLOS #########################
 @app.route("/test", defaults={'name': None}) # Rota com retorno padrão
 @app.route("/test/<name>")
 def teste(name):
